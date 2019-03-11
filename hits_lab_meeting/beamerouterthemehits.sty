@@ -1,0 +1,323 @@
+\ProvidesPackage{beamerouterthemehits}[2007/06/29]
+
+% Copyright 2003      by Till Tantau   <tantau@users.sourceforge.net>
+%       and 2005-2007 by Joerg Cassens <jmt@cassens.org>
+%
+% Bug fixes 2006      by Helge Langseth
+%       and 2006      by Jyun-Fan Tsai
+%
+% Modified to fit the company ci
+% 
+% Changelog:
+% 02.06.2008: initial version 	by jp@ocd
+% 03.06.2008: minor changes
+% 2009 		zirnca adaption for EML-r
+% 26.03.2010: zirnca adaptation for HITS
+%
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+
+
+
+% IMPORTANT NOTES FOR THOSE WHO WANT TO MODIFY THE TEMPLATE!!!
+%
+% 1.) There are some sections commented out 
+%	I commented out the lines that are not used in ``nomal mode'', and to make it easier to find the important 
+%	sections where things can be changed for ``normally'' used parts. 
+% 	If you want to use commands like the ``else'' part of ``\ifbeamer@minimal'', go to that section, comment it in 
+% 	and check whether it works
+%
+
+
+
+
+\mode<presentation>
+
+% Logo
+
+% % % % \pgfdeclareimage[height=1em,interpolate=true]{}{hits_figs/logoOnly}
+% % % % 
+% % % % \ifbeamer@mylogo
+% % % %   \pgfdeclareimage[height=3em,interpolate=true]{hitslogo}{/hits_figs/logoOnly}
+% % % % \fi
+% % % % 
+% % % % \ifbeamer@nologo
+% % % %   \titlegraphic{\pgfuseimage{blubb}}
+% % % % \fi
+
+% Colors, Shades
+
+\setbeamercolor{section in head/foot}{parent=hits first headline}
+\setbeamercolor{subsection in head/foot}{parent=hits second headline}
+
+\setbeamercolor{author in head/foot}{parent=section in head/foot}
+\setbeamercolor{title in head/foot}{parent=subsection in head/foot}
+
+\setbeamercolor{date in head/foot}{parent=hits second title}
+
+\setbeamercolor{frametitle}{parent=subsection in head/foot}
+\setbeamercolor{frametitle right}{parent=section in head/foot}
+
+\usesectionheadtemplate
+  {\hfill\insertsectionhead}
+  {\hfill\color{fg!50!bg}\insertsectionhead}
+
+\pgfdeclarehorizontalshading[frametitle.bg,frametitle right.bg]{beamer@frametitleshade}{\paperheight}{%
+  color(0pt)=(frametitle.bg);
+  color(\paperwidth)=(frametitle right.bg)}
+
+% topmost line below frame title 
+\AtBeginDocument{
+
+  % top line below frame title
+ \pgfdeclareverticalshading{beamer@topshade}{0.8\paperwidth}{%
+    color(0pt)=(red);
+ color(2.2pt)=(red)}
+
+% same line like above, but with shaded colors
+%   \pgfdeclareverticalshading{beamer@topshade}{0.8\paperwidth}{%
+%     color(0pt)=(bg);
+%  color(2.8pt)=(hitsblue)}
+
+% % % % % % % % % % %  
+% % % % % % % % % % %   % lower line above footline
+% % % % % % % % % % %   \pgfdeclareverticalshading{beamer@footline}{\paperwidth}{%
+% % % % % % % % % % %     color(0pt)=(black);
+% % % % % % % % % % %     %color(1.2pt)=(black!70!white)}
+% % % % % % % % % % %     color(0pt)=(black!70!white)}
+}
+
+% Header
+
+\ifbeamer@compress
+  \defbeamertemplate*{headline}{hits theme}
+  {%
+% % % % % % % % % % %     \leavevmode%
+% % % % % % % % % % %     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,right]{section in head/foot}%
+% % % % % % % % % % %       \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+% % % % % % % % % % %     \end{beamercolorbox}%
+% % % % % % % % % % %     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,left]{subsection in head/foot}%
+% % % % % % % % % % %       \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+% % % % % % % % % % %     \end{beamercolorbox}%
+  }
+
+\else
+
+  \ifbeamer@minimal
+    \defbeamertemplate*{headline}{hits theme}{}
+
+  \else
+    \defbeamertemplate*{headline}{hits theme}
+    {%
+% % % % % % % % % % % % % %       \leavevmode%
+% % % % % % % % % % % % % %       \@tempdimb=2.4375ex%
+% % % % % % % % % % % % % %       \ifnum\beamer@subsectionmax<\beamer@sectionmax%
+% % % % % % % % % % % % % %         \multiply\@tempdimb by\beamer@sectionmax%
+% % % % % % % % % % % % % %       \else%
+% % % % % % % % % % % % % %         \multiply\@tempdimb by\beamer@subsectionmax%
+% % % % % % % % % % % % % %       \fi%
+% % % % % % % % % % % % % %       \ifdim\@tempdimb>0pt%
+% % % % % % % % % % % % % %         \advance\@tempdimb by 1.125ex%
+% % % % % % % % % % % % % %         \begin{beamercolorbox}[wd=.5\paperwidth,ht=\@tempdimb]{section in head/foot}%
+% % % % % % % % % % % % % %           \vbox to\@tempdimb{\vfil\insertsectionnavigation{.5\paperwidth}\vfil}%
+% % % % % % % % % % % % % %         \end{beamercolorbox}%
+% % % % % % % % % % % % % %         \begin{beamercolorbox}[wd=.5\paperwidth,ht=\@tempdimb]{subsection in head/foot}%
+% % % % % % % % % % % % % %           \vbox to\@tempdimb{\vfil\insertsubsectionnavigation{.5\paperwidth}\vfil}%
+% % % % % % % % % % % % % %         \end{beamercolorbox}%
+% % % % % % % % % % % % % %       \fi%
+    }
+
+  \fi
+
+\fi
+
+\ifbeamer@shadow
+  \addtobeamertemplate{headline}
+  {}
+  {%
+    \vskip-0.2pt
+%     \pgfuseshading{beamer@topshade}  %(line appears on top of title slide and table of contents slide)
+    \vskip-2pt
+  }
+\fi
+
+% FRAME TITLE
+
+\defbeamertemplate*{frametitle}{hits theme}
+{%
+	% blue gray bar at top
+	\begin{textblock}{0}(0,0)
+			\begin{figure}
+				\pgfdeclareimage[width=14cm,interpolate=true]{hitslogo}{hits_figs/bar}\pgfuseimage{hitslogo}%
+			\end{figure}
+	\end{textblock}
+
+
+\nointerlineskip%
+
+  \ifbeamer@shadow
+    \vskip-2pt%
+  \fi
+ 
+  
+	%check subtitle
+	
+	% inserts logo after subtitle 
+	% \ifx\insertframesubtitle\@empty%
+	% 	\begin{textblock}{20}(112,5.5)
+	% 			\begin{figure}
+	% 				\pgfdeclareimage[width=4ex,interpolate=true]{hitslogo}{hits_figs/logoOnly}\hfill\pgfuseimage{hitslogo}\hspace{.5ex}%
+	% 			\end{figure}
+	% 	\end{textblock}
+	% \else
+	% 	\begin{textblock}{20}(110,6.5)
+	% 			\begin{figure}
+	% 				\pgfdeclareimage[width=1ex,interpolate=true]{hitslogo}{hits_figs/logoOnly}\hfill\pgfuseimage{hitslogo}\hspace{.5ex}%
+	% 			\end{figure}
+	% 	\end{textblock}
+	% \fi
+  \hbox
+	{\leavevmode
+    \advance\beamer@leftmargin by -12bp%
+    \advance\beamer@rightmargin by -12bp%
+    \beamer@tempdim=\textwidth%
+    \advance\beamer@tempdim by \beamer@leftmargin%
+    \advance\beamer@tempdim by \beamer@rightmargin%
+    \hskip-\Gm@lmargin\hbox{%
+      \setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{\paperwidth}%
+% 		\pgfdeclareimage[width=8ex,interpolate=true]{hitslogo}{hits_figs/logoOnly}\hfill\pgfuseimage{hitslogo}\hspace{.5ex}%
+	  \vbox{}\vskip2ex% %changes the space between slide title and upper border
+          \leftskip0.3cm  %pushes everything to the right side !? 
+          \rightskip2.0cm plus1fil  % defines whether head line is stretched to left and right (at the same time, like center justification), and to which direction it is oriented (right justified or left justified)
+
+	%\leavevmode % don't really know what this is for, but it somehow causes that the first line of a title is idented to the right, but also causes the logo not to appear
+          \ifbeamer@nologo
+            \ifbeamer@mylogo
+              \begin{huge}
+		\textbf{\insertframetitle}%   this line really inserts the frametitle 
+              \end{huge}
+            \else
+              \insertframetitle%
+                \pgfdeclareimage[width=8ex,interpolate=true]{hitslogo}{hits_figs/logoOnly}\hfill\pgfuseimage{hitslogo}\hspace{.5ex}%
+            \fi
+          \else
+			\textbf{\insertframetitle}%
+% % % % % % % % %               \pgfdeclareimage[width=1ex,interpolate=true]{ntnulogowhite}{ntnu/ntnu} %one more line nobody knows  it's necessary
+          \fi
+          \ifx\insertframesubtitle\@empty%
+            \strut\par%
+          \else
+            \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\hskip0.2cm\insertframesubtitle}\strut\par}%
+          \fi%
+          \nointerlineskip
+          \vbox{}%
+          \end{minipage}}%
+      \beamer@tempdim=\ht\beamer@tempbox%
+      \advance\beamer@tempdim by 2pt%
+      \begin{pgfpicture}{0pt}{0pt}{\paperwidth}{\beamer@tempdim}
+        \usebeamercolor{frametitle right}
+        \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\beamer@tempdim}}
+        \pgfusepath{clip}
+        \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
+      \end{pgfpicture}
+      \hskip-\paperwidth%
+      \box\beamer@tempbox%
+    }%
+    \hskip-\Gm@rmargin%
+  }%
+  \nointerlineskip
+  \ifbeamer@shadow
+    \vskip-0.2pt
+% % % % % % % % % % % % % %     \hbox to\textwidth{\hskip-\Gm@lmargin\pgfuseshading{beamer@topshade}\hskip-\Gm@rmargin} %line under title
+    \vskip-0.2pt
+    
+%     \vspace{4ex}%empty space between title and slide text
+  \fi
+}
+
+% hits clear title background
+
+%\ifbeamer@hitsbg
+\newcommand{\hitstitlepagebackground}{
+\setbeamertemplate{background canvas}
+
+}
+
+
+
+
+
+
+% Footer
+
+\ifbeamer@numbers % changed
+% Page BLAH from BLAH
+\defbeamertemplate*{footline}{hits theme}
+{%
+
+}
+
+\else
+
+\defbeamertemplate*{footline}{hits theme}
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\fi
+
+
+% Title page: default
+% TITLE PAGE  (the whole section below )
+
+\defbeamertemplate*{title page}{hits theme}[1][]
+{
+
+    		\begin{textblock}{0}(0,0)
+				\begin{figure}
+					\pgfdeclareimage[width=14cm,interpolate=true]{hitslogo}{hits_figs/bar}\pgfuseimage{hitslogo}%
+				\end{figure}
+		\end{textblock}
+
+\begin{changemargin}{-2.3em}{+2em}
+ 
+  \vskip0.2cm
+  \pgfdeclareimage[width=30ex,interpolate=true]{hitslogo}{hits_figs/HITS_Vollton_eng}\hfill\pgfuseimage{hitslogo}\hspace{.5ex}%
+  \vbox{}
+  \vskip0.7cm
+
+	
+% with this parameter text can be moved down
+%   \vskip1ex  
+	
+
+
+  \Huge\begin{beamercolorbox}[center]{hits first headline}\textbf{\color{hitsblue}\Huge\inserttitle}\end{beamercolorbox}
+\vspace{0,4cm}
+  \large\begin{beamercolorbox}[center]{hits first headline}\textbf{\color{hitsblue}\large{\insertsubtitle}}\end{beamercolorbox}
+\vspace{0,4cm}
+  \large\begin{beamercolorbox}[center]{hits first headline}\textbf{\color{black}\small{\insertauthor}}\end{beamercolorbox}
+\vspace{0,4cm}
+  \large\begin{beamercolorbox}[center]{hits first headline}\textbf{\color{black}\small{\insertinstitute}}\end{beamercolorbox}
+
+
+
+  \vfill
+
+\end{changemargin}
+
+}
+
+
+
+
+\mode
+<all>

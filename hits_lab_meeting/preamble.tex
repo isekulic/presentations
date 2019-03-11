@@ -1,0 +1,237 @@
+\documentclass{beamer}
+\usepackage{etex}
+\usepackage[utf8]{inputenc}
+\usepackage{etex}
+\usepackage{textcomp}	 % additional symbols (Text Companion font extension)
+ \usepackage{tikz}
+ \usetikzlibrary{positioning,fit}
+% \usepackage{lmodern}               %% --- Latin Modern
+\usepackage{mathptmx}              %% --- Times mit Matheschriften
+% \usepackage{mathpazo}              %% --- Palatino
+
+% \usepackage[scaled=.90]{helvet}    %% --- Helvetica (Arial)
+
+%
+% \usepackage{courier}               %% --- Courier
+\usepackage{changepage}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xspace}
+\usepackage{adjustbox}
+\usepackage{caption}
+\usepackage{tikz-dependency}
+\usepackage{setspace}
+% \usepackage[style=authoryear]{biblatex}
+\usepackage{natbib}
+\setcitestyle{authoryear}
+\bibliographystyle{plainnat}
+\mode<presentation>
+
+%\usetheme{default}
+\usetheme{Madrid}
+% \usetheme{HITS} 
+% other themes: AnnArbor, Antibes, Bergen, Berkeley, Berlin, Boadilla, boxes, CambridgeUS, Copenhagen, Darmstadt, default, Dresden, Frankfurt, Goettingen,
+% Hannover, Ilmenau, JuanLesPins, Luebeck, Madrid, Maloe, Marburg, Montpellier, PaloAlto, Pittsburg, Rochester, Singapore, Szeged, classic
+
+\setbeamercovered{invisible} 
+\setbeamertemplate{mini frames}[box] % shows small rectangles as mini frames.
+
+% -------------------------------
+%%% 7.2.4 The Navigation Symbols
+\setbeamertemplate{navigation symbols}{} % suppresses all navigation symbols:
+
+% -------------------------------
+%%% 7.3 Margin Sizes
+\setbeamersize{text margin left=2em,text margin right=2em}
+% -------------------------------
+%%% 9.2 Adding Sections and Subsections
+% -------------------------------
+\setbeamertemplate{sections/subsections in toc}[default]
+
+% -------------------------------
+%%% 9.6 Adding a Bibliography
+% -------------------------------
+\setbeamertemplate{bibliography item}[default] %  little article icon as the reference
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default] % Numbered
+%%% 11.2 Hilighting
+% -------------------------------
+%%% 11.3 Block Environments
+\setbeamertemplate{blocks}[default]
+% \usecolortheme{structure}
+% color themes: albatross, beaver, beetle, crane, default, dolphin, dov, fly, lily, orchid, rose, seagull, seahorse, sidebartab, structure, whale, wolverine
+
+\usefonttheme{structurebold}
+% font themes: default, professionalfonts, serif, structurebold, structureitalicserif, structuresmallcapsserif
+
+% pdf is displayed in full screen mode automatically
+%~ \hypersetup{pdfpagemode=FullScreen}
+
+\usepackage{xcolor,soul}
+% define your own colours:
+\definecolor{Red}{rgb}{1,0,0}
+\definecolor{Blue}{rgb}{0,0,1}
+\definecolor{Green}{rgb}{0,1,0}
+\definecolor{magenta}{rgb}{1,0,.6}
+\definecolor{lightblue}{rgb}{0,.5,1}
+\definecolor{lightpurple}{rgb}{.6,.4,1}
+\definecolor{gold}{rgb}{.6,.5,0}
+\definecolor{orange}{rgb}{1,0.4,0}
+\definecolor{hotpink}{rgb}{1,0,0.5}
+\definecolor{newcolor2}{rgb}{.5,.3,.5}
+\definecolor{newcolor}{rgb}{0,.3,1}
+\definecolor{newcolor3}{rgb}{1,0,.35}
+\definecolor{darkgreen1}{rgb}{0, .35, 0}
+\definecolor{darkgreen}{rgb}{0, .6, 0}
+\definecolor{darkred}{rgb}{.75,0,0}
+
+\xdefinecolor{olive}{cmyk}{0.64,0,0.95,0.4}
+\xdefinecolor{purpleish}{cmyk}{0.75,0.75,0,0}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\sethlcolor{orange}
+\renewcommand<>{\hl}[1]{\only#2{\beameroriginal{\hl}}{#1}}
+
+% \usecolortheme[named=darkred]{structure} 
+% http://tex.stackexchange.com/questions/41683/why-is-it-that-coloring-in-soul-in-beamer-is-not-visible
+\makeatletter
+\newcommand\SoulColor{%
+  \let\set@color\beamerorig@set@color
+  \let\reset@color\beamerorig@reset@color}
+\makeatother
+\SoulColor
+
+% command for changing margins of specific frame (jp@ocd)
+\newenvironment{changemargin}[2]{%
+	\begin{list}{}{%
+	\setlength{\topsep}{0pt}%
+	\setlength{\leftmargin}{#1}%
+	\setlength{\rightmargin}{#2}%
+	\setlength{\listparindent}{\parindent}%
+	\setlength{\itemindent}{\parindent}%
+	\setlength{\parsep}{\parskip}%
+	}%
+	\item[]}{\end{list}
+}
+% \usepackage{beamerinnertheme_______}
+% inner themes include circles, default, inmargin, rectangles, rounded
+\usepackage[absolute,overlay]{textpos}
+\usepackage{beamerouterthemedefault}
+% outer themes include default, infolines, miniframes, shadow, sidebar, smoothbars, smoothtree, split, tree
+
+%~ \useoutertheme[subsection=false]{smoothbars}
+\beamertemplatenavigationsymbolsempty
+
+% to have the same footer on all slides
+%\setbeamertemplate{footline}[text line]{xxx xxx xxx}
+%\setbeamertemplate{footline}[text line]{} % or empty footer
+%gets rid of bottom navigation bars
+% \setbeamertemplate{footline}[frame number]{}
+\setbeamertemplate{footline}{}
+%gets rid of navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage{subfig} 
+\usepackage{booktabs}
+\usepackage{epstopdf}
+\usepackage{tikz}
+\usetikzlibrary{shadings}
+\usepackage{tikz-qtree}
+\usepackage{tikz-dependency}
+\usepackage{pgfplots}
+
+\newcommand\thead{}
+\newcommand\tbest{\textbf}
+\newcommand\conll{CoNLL\xspace}
+\newcommand\tac{TAC15\xspace}
+\newcommand*\mean[1]{\bar{#1}}
+\frenchspacing
+
+\definecolor{pink}{rgb}{1.0, 0.61, 0.75}
+\definecolor{yellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
+\definecolor{bananayellow}{rgb}{1.0, 0.88, 0.21}
+\definecolor{amber}{RGB}{251, 125, 42}
+
+\definecolor{palette1}{RGB}{255, 185, 151}
+\definecolor{palette2}{RGB}{246, 126, 125}
+\definecolor{palette3}{rgb}{1.0, 0.88, 0.21}
+\definecolor{palette4}{rgb}{0.63, 0.79, 0.95}
+\definecolor{palette5}{RGB}{251, 125, 42}
+\definecolor{palette6}{RGB}{162, 89, 128}
+
+% \newcommand\hl[1]{%
+%     \tikz[baseline]%
+%     \node[rounded corners=3pt,rectangle,fill=pink,anchor=text]{#1};%
+% }
+% \newcommand\predhl[1]{%
+%     \tikz[baseline]%
+%     \node[rectangle,fill=bananayellow,anchor=text]{#1};%
+% }
+
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+
+\graphicspath{ {fig/} }
+
+\makeatletter
+\define@key{beamerframe}{wide}[18pt]{%
+\def\beamer@cramped{\itemsep #1\topsep0.5pt\relax}}
+\makeatother
+
+\newcommand{\resource}{}
+\newcommand{\sieve}[1]{\textbf{#1:}}
+\newcommand{\pred}[1]{{\textsf{#1}}}
+\newcommand{\metric}{\texttt}
+
+\tikzset{
+    invisible/.style={opacity=0},
+    visible on/.style={alt=#1{}{invisible}},
+    alt/.code args={<#1>#2#3}{%
+      \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+    },
+  }
+
+\tikzset{onslide/.code args={<#1>#2}{%
+  \only<#1>{\pgfkeysalso{#2}} % \pgfkeysalso doesn't change the path
+}}
+\tikzset{temporal/.code args={<#1>#2#3#4}{%
+  \temporal<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}{\pgfkeysalso{#4}} % \pgfkeysalso doesn't change the path
+}}
+
+\tikzset{faded/.style={black!30}}
+
+\def\tpage[#1]{\begin{frame}\huge\center #1\end{frame}}
+\def\event#1{\textsc{#1}}
+\def\arg#1{\textsc{#1}}
+\def\sb#1{{[}#1{]}}
+\def\csb#1#2{\textcolor{#1}{{[}}#2\textcolor{#1}{{]}}}
+\def\f1{$\text{F}_1$}
+\def\w{$\mathbf{w}$}
+\def\mw{\mathbf{w}}
+\def\seg{$u_e$}
+\def\xnode#1{\ensuremath{x_{#1}}}
+\def\ynode#1{\ensuremath{y_{#1}}}
+
+\AtBeginSection[] {% do nothing for \section*
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    %\tableofcontents[currentsection]
+	\tableofcontents[
+	  currentsection,
+	  sectionstyle=show/shaded,
+	  subsectionstyle=show/shaded/hide
+	]
+  \end{frame}
+}
+
+\AtBeginSubsection[] {% do nothing for \section*
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    %\tableofcontents[currentsection]
+	\tableofcontents[
+	  currentsection,
+	  sectionstyle=show/shaded,
+	  subsectionstyle=show/shaded/hide
+	]
+  \end{frame}
+}

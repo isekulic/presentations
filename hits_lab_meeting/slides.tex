@@ -1,0 +1,127 @@
+\documentclass[%
+	final, %
+	% 10pt, % slightly smaller
+	11pt, % standard font size
+	% 12pt, % slightly bigger
+	% handout, % for producing handouts
+	% t, % Place text of slides at the (vertical) top of the slides
+	c, % Place text of slides at the (vertical) center of the slides
+	xcolor={table,dvipsnames}, % options for xcolor
+]{beamer}[2007/03/11]
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % for correct hyphenation of words with accented letters in European languages 
+\usepackage{textcomp}	 % additional symbols (Text Companion font extension)
+\usepackage{mathptmx}              %% --- Times mit Matheschriften
+\usepackage[scaled=.90]{helvet}
+\usepackage{courier}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+\usepackage{tabularx}   % enables more options for tables
+\usepackage{multicol}
+\usepackage[absolute,overlay]{textpos}
+\setlength{\TPHorizModule}{1mm}  % define e.g. 1mm as a module 
+\setlength{\TPVertModule}{\TPHorizModule} 
+\textblockorigin{-5.5mm}{-0.5mm} % start everything near the top-left corner 
+\usepackage{makerobust}
+\usepackage{ifthen}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{decorations,positioning,calc,arrows.meta}
+\usetikzlibrary{positioning}
+
+\usetheme[minimal,numbers,mylogo,nologo,hitsbg]{HITS}
+\setbeamercovered{invisible} 
+\setbeamertemplate{mini frames}[box] % shows small rectangles as mini frames.
+\setbeamertemplate{navigation symbols}{} % suppresses all navigation symbols:
+\setbeamersize{text margin left=2em,text margin right=2em}
+\setbeamertemplate{sections/subsections in toc}[default]
+
+\setbeamertemplate{bibliography item}[default] %  little article icon as the reference
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default] % Numbered
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\newcommand{\therfore}{\ding{225}\mbox{ }}
+\newcommand{\verythinarrow}{\ding{221}\mbox{ }}
+\newcommand{\thinarrow}{\ding{222}\mbox{ }}
+\newcommand{\newarrow}{\ding{222}\mbox{ }}
+\newcommand{\addspace}{\vspace{0.5\baselineskip}}
+
+\newenvironment{changemargin}[2]{%
+	\begin{list}{}{%
+	\setlength{\topsep}{0pt}%
+	\setlength{\leftmargin}{#1}%
+	\setlength{\rightmargin}{#2}%
+	\setlength{\listparindent}{\parindent}%
+	\setlength{\itemindent}{\parindent}%
+	\setlength{\parsep}{\parskip}%
+	}%
+	\item[]}{\end{list}
+}
+
+% displays a table of contents at each section
+\AtBeginSection[] {% do nothing for \section*
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+\beamertemplatenavigationsymbolsempty
+
+\makeatother
+\setbeamertemplate{footline}
+{%
+	\usebeamerfont{author in head/foot}\hfill\insertframenumber\hspace{0.8em}
+	\vskip1.7ex
+}
+\makeatletter
+
+\usepackage{soul}
+\usepackage{color}
+\makeatletter
+\newcommand\SoulColor{%
+  \let\set@color\beamerorig@set@color
+  \let\reset@color\beamerorig@reset@color}
+\makeatother
+\SoulColor
+
+\renewcommand<>{\hl}[1]{\only#2{\beameroriginal{\hl}}{#1}}
+\newcommand{\per}[1]{\SoulColor\hl{#1}}
+\renewcommand<>{\per}[1]{\only#2{\beameroriginal{\per}}{#1}}
+\newcommand{\org}[1]{\sethlcolor{orange}\SoulColor\hl{#1}}
+\renewcommand<>{\org}[1]{\only#2{\beameroriginal{\org}}{#1}}
+\newcommand{\loc}[1]{\sethlcolor{cyan}\SoulColor\hl{#1}}
+\renewcommand<>{\loc}[1]{\only#2{\beameroriginal{\loc}}{#1}}
+\newcommand{\other}[1]{\sethlcolor{pink}\SoulColor\hl{#1}}
+\renewcommand<>{\other}[1]{\only#2{\beameroriginal{\other}}{#1}}
+% \newcommand<>{\mention}[1]{{\only#2{\sethlcolor{orange}\SoulColor\hl{#1}}}}
+\newcommand<>{\ner}[2]{\protect{$\stackrel{\visible#3{\hbox{\emph{/#2}}}}{\hbox{#1}}$}}
+% \newcommand{\ner}[2]{\hbox{#2}\hbox{#1}}
+% \renewcommand<>{\ner}[1]{\only#2{\beameroriginal{\ner}}{#1}}
+\MakeRobustCommand\hl
+\MakeRobustCommand\ner
+
+\newcommand{\graphicsframe}[1]{
+\begin{frame}[plain]
+    \begin{center}
+		\includegraphics[width=\textwidth,height=0.95\textheight,keepaspectratio]{#1}
+    \end{center}
+\end{frame}
+}
+
+\newcommand{\graphicstitleframe}[2]{
+	\frame{\frametitle{#1}
+		\begin{center}
+			\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{#2}
+		\end{center}
+	}
+}
+
+%\usepackage{datetime}
+\usepackage{changepage}
+\begin{document}
+     \input{content}
+\end{document}
